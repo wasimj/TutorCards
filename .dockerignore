@@ -1,0 +1,21 @@
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose*.yml
+README.md
+
+log/*
+tmp/*
+storage/*
+!storage/.keep
+node_modules
+vendor/bundle
+.bundle
+
+.env*
+!.env.example
+
+# Secrets — provide SECRET_KEY_BASE via the deploy env instead.
+config/master.key
+config/credentials/*.key

@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+# Run migrations on every boot so deploys pick up new schema automatically.
+if [ "${RAILS_ENV:-production}" = "production" ]; then
+  ./bin/rails db:prepare
+fi
+
+exec "${@}"

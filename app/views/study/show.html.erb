@@ -1,0 +1,35 @@
+<% if @card.nil? %>
+  <div class="empty-state">
+    <% if @total.zero? %>
+      <h2>No cards yet</h2>
+      <p>Import a CSV to get started.</p>
+      <p style="margin-top: 1rem;"><%= link_to "Import CSV", import_cards_path, class: "btn" %></p>
+    <% else %>
+      <h2>You're all caught up</h2>
+      <p>No cards are due right now. Come back later, or reset progress to study them all again.</p>
+      <p style="margin-top: 1rem;">
+        <%= link_to "Back to dashboard", root_path, class: "btn secondary" %>
+      </p>
+    <% end %>
+  </div>
+<% else %>
+  <div class="study-wrap">
+    <div class="meta" style="font-size: 0.75rem; color: #6b6b85; text-transform: uppercase; letter-spacing: 0.08em;">
+      <%= @remaining %> due · Box <%= @card.box %>
+    </div>
+    <div class="flash-card">
+      <div class="photo <%= 'placeholder' if @card.photo_filename.blank? %>">
+        <% if @card.photo_filename.present? %>
+          <img src="<%= photo_path(filename: @card.photo_filename) %>" alt="<%= @card.name %>">
+        <% else %>
+          (no photo)
+        <% end %>
+      </div>
+      <div class="name"><%= @card.name %></div>
+    </div>
+    <div class="grade-row">
+      <%= button_to "Missed", grade_card_path(@card, result: "missed"), class: "miss", form: { class: "inline" } %>
+      <%= button_to "Got it →", grade_card_path(@card, result: "got_it"), class: "got", form: { class: "inline" } %>
+    </div>
+  </div>
+<% end %>

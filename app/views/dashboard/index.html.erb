@@ -1,0 +1,149 @@
+<div class="layout-2">
+  <div>
+    <div class="stats">
+      <div class="stat"><div class="num"><%= @total %></div><div class="label">Total cards</div></div>
+      <div class="stat"><div class="num"><%= @due %></div><div class="label">Due now</div></div>
+      <% @by_box.each do |box, count| %>
+        <div class="stat"><div class="num"><%= count %></div><div class="label">Box <%= box %></div></div>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= link_to "Start studying →", study_path, class: "btn" %>
+      <%= link_to "Import CSV", import_cards_path, class: "btn secondary" %>
+      <%= link_to "View all cards", cards_path, class: "btn secondary" %>
+      <%= button_to "Reset progress", reset_cards_path, method: :post, class: "btn danger",
+            form: { class: "inline", data: { turbo_confirm: "Reset every card to box 1?" } } %>
+    </div>
+
+    <div class="panel">
+      <h2>How the Leitner system works here</h2>
+      <p style="font-size: 0.88rem; color: #8b8ba0; line-height: 1.55;">
+        Each card lives in a numbered box. New imports start in <strong>Box 1</strong>.
+        When you mark a card as <em>got it</em>, it moves up a box and won't reappear until its interval elapses
+        (Box 1: every session · Box 2: 1d · Box 3: 3d · Box 4: 7d · Box 5: 14d).
+        <em>Missed</em> sends it back to Box 1.
+      </p>
+    </div>
+
+    <div class="panel">
+      <h2>CSV format</h2>
+      <p style="font-size: 0.88rem; color: #8b8ba0; line-height: 1.55;">
+        Two columns: <code>name,photo</code>. The <code>photo</code> value should match the filename of an
+        uploaded image (e.g. <code>alice.svg</code>). You can upload the photos in the same form.
+      </p>
+    </div>
+  </div>
+
+  <aside class="panel" style="margin-bottom: 0;">
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.9rem;">
+      <h2 style="margin: 0; margin-right: auto;">Project TODOs</h2>
+    </div>
+    <div class="todos-tabs">
+      <button class="todos-tab active" data-tab="active">Active <span class="badge" data-count="active">0</span></button>
+      <button class="todos-tab" data-tab="done">Done <span class="badge" data-count="done">0</span></button>
+      <button class="todos-tab" data-tab="deleted">Deleted <span class="badge" data-count="deleted">0</span></button>
+    </div>
+    <form class="todos-add" id="todos-add">
+      <input type="text" id="todos-input" placeholder="Add a todo and press Enter…" autocomplete="off">
+      <button type="submit" class="btn">Add</button>
+    </form>
+    <ul class="todos-list" id="todos-list"></ul>
+  </aside>
+</div>
+
+<script>
+(function () {
+  const KEY = "tutorcards_todos_v1";
+  let state = { tab: "active", todos: [] };
+
+  const list = document.getElementById("todos-list");
+  const input = document.getElementById("todos-input");
+  const addForm = document.getElementById("todos-add");
+  const tabBtns = document.querySelectorAll(".todos-tab");
+
+  function load() {
+    try { const raw = localStorage.getItem(KEY); if (raw) state.todos = JSON.parse(raw); }
+    catch { state.todos = []; }
+  }
+  function save() { localStorage.setItem(KEY, JSON.stringify(state.todos)); }
+  function uid() { return Math.random().toString(36).slice(2, 10); }
+
+  function render() {
+    const active = state.todos.filter(t => !t.doneAt && !t.deletedAt);
+    const done = state.todos.filter(t => t.doneAt && !t.deletedAt)
+      .sort((a, b) => (b.doneAt || "").localeCompare(a.doneAt || ""));
+    const deleted = state.todos.filter(t => t.deletedAt)
+      .sort((a, b) => (b.deletedAt || "").localeCompare(a.deletedAt || ""));
+    document.querySelector('.badge[data-count="active"]').textContent = active.length;
+    document.querySelector('.badge[data-count="done"]').textContent = done.length;
+    document.querySelector('.badge[data-count="deleted"]').textContent = deleted.length;
+    addForm.style.display = state.tab === "active" ? "flex" : "none";
+    const items = state.tab === "active" ? active : state.tab === "done" ? done : deleted;
+    if (items.length === 0) {
+      const empty = state.tab === "active" ? "No todos yet — add one above."
+        : state.tab === "done" ? "No completed todos yet." : "No deleted todos.";
+      list.innerHTML = `<li class="todos-empty">${empty}</li>`;
+      return;
+    }
+    list.innerHTML = "";
+    for (const t of items) {
+      const li = document.createElement("li");
+      li.className = "todo-row" + (t.deletedAt ? " deleted" : t.doneAt ? " done" : "");
+      if (!t.deletedAt) {
+        const check = document.createElement("input");
+        check.type = "checkbox"; check.className = "check"; check.checked = !!t.doneAt;
+        check.addEventListener("change", () => toggleDone(t.id));
+        li.appendChild(check);
+      }
+      const span = document.createElement("span");
+      span.className = "text"; span.textContent = t.text;
+      li.appendChild(span);
+      const actions = document.createElement("div");
+      actions.className = "actions";
+      if (!t.deletedAt) {
+        const del = document.createElement("button"); del.type = "button"; del.className = "danger";
+        del.textContent = "Delete"; del.addEventListener("click", () => softDelete(t.id));
+        actions.appendChild(del);
+      } else {
+        const restore = document.createElement("button"); restore.type = "button";
+        restore.textContent = "Restore"; restore.addEventListener("click", () => restoreTodo(t.id));
+        actions.appendChild(restore);
+        const purge = document.createElement("button"); purge.type = "button"; purge.className = "danger";
+        purge.textContent = "Delete forever"; purge.addEventListener("click", () => purgeTodo(t.id));
+        actions.appendChild(purge);
+      }
+      li.appendChild(actions);
+      list.appendChild(li);
+    }
+  }
+  function add(text) {
+    text = text.trim(); if (!text) return;
+    state.todos.unshift({ id: uid(), text, createdAt: new Date().toISOString() });
+    save(); render();
+  }
+  function toggleDone(id) {
+    const t = state.todos.find(t => t.id === id); if (!t) return;
+    t.doneAt = t.doneAt ? null : new Date().toISOString(); save(); render();
+  }
+  function softDelete(id) {
+    const t = state.todos.find(t => t.id === id); if (!t) return;
+    t.deletedAt = new Date().toISOString(); save(); render();
+  }
+  function restoreTodo(id) {
+    const t = state.todos.find(t => t.id === id); if (!t) return;
+    t.deletedAt = null; save(); render();
+  }
+  function purgeTodo(id) {
+    state.todos = state.todos.filter(t => t.id !== id); save(); render();
+  }
+  addForm.addEventListener("submit", (e) => {
+    e.preventDefault(); add(input.value); input.value = ""; input.focus();
+  });
+  tabBtns.forEach(btn => btn.addEventListener("click", () => {
+    tabBtns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active"); state.tab = btn.dataset.tab; render();
+  }));
+  load(); render();
+})();
+</script>

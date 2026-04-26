@@ -1,0 +1,37 @@
+<div class="actions">
+  <%= link_to "Import CSV", import_cards_path, class: "btn" %>
+  <%= link_to "← Dashboard", root_path, class: "btn secondary" %>
+</div>
+
+<% if @cards.empty? %>
+  <div class="empty-state"><h2>No cards yet</h2><p>Import a CSV to get started.</p></div>
+<% else %>
+  <table class="cards">
+    <thead>
+      <tr><th></th><th>Name</th><th>Photo file</th><th>Box</th><th>Last reviewed</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% @cards.each do |c| %>
+        <tr>
+          <td>
+            <% if c.photo_filename.present? %>
+              <img class="thumb" src="<%= photo_path(filename: c.photo_filename) %>" alt="">
+            <% else %>
+              <span class="thumb-empty"></span>
+            <% end %>
+          </td>
+          <td><strong><%= c.name %></strong></td>
+          <td><code><%= c.photo_filename.presence || "—" %></code></td>
+          <td><span class="box-pill">Box <%= c.box %></span></td>
+          <td style="color: #6b6b85; font-size: 0.82rem;">
+            <%= c.last_reviewed_at ? c.last_reviewed_at.strftime("%Y-%m-%d %H:%M") : "never" %>
+          </td>
+          <td>
+            <%= button_to "Delete", card_path(c), method: :delete, class: "btn danger",
+                  form: { class: "inline", data: { turbo_confirm: "Delete #{c.name}?" } } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

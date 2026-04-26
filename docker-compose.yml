@@ -1,0 +1,26 @@
+# Local production-image smoke test:
+#   docker compose up --build
+#   open http://localhost:3000
+#
+# In Dokploy, prefer the Application service (Dockerfile) and set the env vars
+# below on the service. Mount /rails/storage as a persistent volume so SQLite
+# and uploaded photos survive redeploys.
+
+services:
+  web:
+    build: .
+    image: tutorcards:latest
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: production
+      RAILS_LOG_TO_STDOUT: "1"
+      RAILS_SERVE_STATIC_FILES: "1"
+      # Generate with: bundle exec rails secret
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE:-change-me-in-prod}
+    volumes:
+      - tutorcards-storage:/rails/storage
+    restart: unless-stopped
+
+volumes:
+  tutorcards-storage:

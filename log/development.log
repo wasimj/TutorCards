@@ -1,0 +1,152 @@
+  [1m[35m (10.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='TutorGroupCards'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-04-26 19:29:41.211511', '2026-04-26 19:29:41.211515') RETURNING "key" /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TutorGroupCards'*/[0m
+Migrating to CreateCards (20260426192524)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "cards" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "photo_filename" varchar, "box" integer DEFAULT 1 NOT NULL, "last_reviewed_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260426192524') RETURNING "version" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Alice Chen' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.2ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Alice Chen', 'alice.svg', 1, NULL, '2026-04-26 19:29:41.335760', '2026-04-26 19:29:41.335760') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (15.9ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.2ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Bilal Ahmed' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (1.2ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Bilal Ahmed', 'bilal.svg', 1, NULL, '2026-04-26 19:29:41.355984', '2026-04-26 19:29:41.355984') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.2ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Carmen Diaz' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (1.8ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Carmen Diaz', 'carmen.svg', 1, NULL, '2026-04-26 19:29:41.362978', '2026-04-26 19:29:41.362978') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Daniel O''Connor' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (1.9ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Daniel O''Connor', 'daniel.svg', 1, NULL, '2026-04-26 19:29:41.369396', '2026-04-26 19:29:41.369396') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Emma Watson' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.9ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Emma Watson', 'emma.svg', 1, NULL, '2026-04-26 19:29:41.376422', '2026-04-26 19:29:41.376422') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Farouk Patel' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.8ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Farouk Patel', 'farouk.svg', 1, NULL, '2026-04-26 19:29:41.379697', '2026-04-26 19:29:41.379697') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Grace Kim' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.6ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Grace Kim', 'grace.svg', 1, NULL, '2026-04-26 19:29:41.382383', '2026-04-26 19:29:41.382383') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Hiroshi Tanaka' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.8ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Hiroshi Tanaka', 'hiroshi.svg', 1, NULL, '2026-04-26 19:29:41.384703', '2026-04-26 19:29:41.384703') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Isabella Rossi' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.7ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Isabella Rossi', 'isabella.svg', 1, NULL, '2026-04-26 19:29:41.387332', '2026-04-26 19:29:41.387332') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Jasper Mwangi' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.9ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Jasper Mwangi', 'jasper.svg', 1, NULL, '2026-04-26 19:29:41.389813', '2026-04-26 19:29:41.389813') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Kira Larsen' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.8ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Kira Larsen', 'kira.svg', 1, NULL, '2026-04-26 19:29:41.392575', '2026-04-26 19:29:41.392575') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Liam Murphy' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.8ms)[0m  [1m[32mINSERT INTO "cards" ("name", "photo_filename", "box", "last_reviewed_at", "created_at", "updated_at") VALUES ('Liam Murphy', 'liam.svg', 1, NULL, '2026-04-26 19:29:41.395411', '2026-04-26 19:29:41.395411') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" /*application='TutorGroupCards'*/[0m
+Started GET "/" for 127.0.0.1 at 2026-04-26 19:30:40 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TutorGroupCards'*/[0m
+Processing by DashboardController#index as */*
+  [1m[36mCard Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:3:in `index'
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE (last_reviewed_at IS NULL OR (box = 1 AND last_reviewed_at <= '2026-04-26 19:30:40.386028') OR (box = 2 AND last_reviewed_at <= '2026-04-25 19:30:40.386175') OR (box = 3 AND last_reviewed_at <= '2026-04-23 19:30:40.386194') OR (box = 4 AND last_reviewed_at <= '2026-04-19 19:30:40.386210') OR (box = 5 AND last_reviewed_at <= '2026-04-12 19:30:40.386223')) /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:4:in `index'
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."box" = 1 /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:5:in `block in index'
+  [1m[36mCard Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."box" = 2 /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:5:in `block in index'
+  [1m[36mCard Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."box" = 3 /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:5:in `block in index'
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."box" = 4 /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:5:in `block in index'
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."box" = 5 /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:5:in `block in index'
+  Rendering layout layouts/application.html.erb
+  Rendering dashboard/index.html.erb within layouts/application
+  Rendered dashboard/index.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | GC: 0.0ms)
+Completed 200 OK in 30ms (Views: 5.7ms | ActiveRecord: 1.5ms (7 queries, 0 cached) | GC: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2026-04-26 19:30:40 +0000
+Processing by DashboardController#index as */*
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:3:in `index'
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE (last_reviewed_at IS NULL OR (box = 1 AND last_reviewed_at <= '2026-04-26 19:30:40.411879') OR (box = 2 AND last_reviewed_at <= '2026-04-25 19:30:40.411970') OR (box = 3 AND last_reviewed_at <= '2026-04-23 19:30:40.411985') OR (box = 4 AND last_reviewed_at <= '2026-04-19 19:30:40.411997') OR (box = 5 AND last_reviewed_at <= '2026-04-12 19:30:40.412008')) /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:4:in `index'
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."box" = 1 /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:5:in `block in index'
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."box" = 2 /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:5:in `block in index'
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."box" = 3 /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:5:in `block in index'
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."box" = 4 /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:5:in `block in index'
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE "cards"."box" = 5 /*action='index',application='TutorGroupCards',controller='dashboard'*/[0m
+  ↳ app/controllers/dashboard_controller.rb:5:in `block in index'
+  Rendering layout layouts/application.html.erb
+  Rendering dashboard/index.html.erb within layouts/application
+  Rendered dashboard/index.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 1.1ms | ActiveRecord: 0.5ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/study" for 127.0.0.1 at 2026-04-26 19:30:46 +0000
+Processing by StudyController#show as */*
+  [1m[36mCard Load (0.4ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE (last_reviewed_at IS NULL OR (box = 1 AND last_reviewed_at <= '2026-04-26 19:30:46.825198') OR (box = 2 AND last_reviewed_at <= '2026-04-25 19:30:46.825323') OR (box = 3 AND last_reviewed_at <= '2026-04-23 19:30:46.825345') OR (box = 4 AND last_reviewed_at <= '2026-04-19 19:30:46.825360') OR (box = 5 AND last_reviewed_at <= '2026-04-12 19:30:46.825374')) ORDER BY RANDOM() LIMIT 1 /*action='show',application='TutorGroupCards',controller='study'*/[0m
+  ↳ app/controllers/study_controller.rb:3:in `show'
+  [1m[36mCard Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" WHERE (last_reviewed_at IS NULL OR (box = 1 AND last_reviewed_at <= '2026-04-26 19:30:46.831319') OR (box = 2 AND last_reviewed_at <= '2026-04-25 19:30:46.831435') OR (box = 3 AND last_reviewed_at <= '2026-04-23 19:30:46.831451') OR (box = 4 AND last_reviewed_at <= '2026-04-19 19:30:46.831464') OR (box = 5 AND last_reviewed_at <= '2026-04-12 19:30:46.831477')) /*action='show',application='TutorGroupCards',controller='study'*/[0m
+  ↳ app/controllers/study_controller.rb:4:in `show'
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" /*action='show',application='TutorGroupCards',controller='study'*/[0m
+  ↳ app/controllers/study_controller.rb:5:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering study/show.html.erb within layouts/application
+  Rendered study/show.html.erb within layouts/application (Duration: 1.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 3.2ms | ActiveRecord: 0.9ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/cards" for 127.0.0.1 at 2026-04-26 19:30:46 +0000
+Processing by CardsController#index as */*
+  Rendering layout layouts/application.html.erb
+  Rendering cards/index.html.erb within layouts/application
+  [1m[36mCard Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "cards" LIMIT 1 /*action='index',application='TutorGroupCards',controller='cards'*/[0m
+  ↳ app/views/cards/index.html.erb:7
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" ORDER BY "cards"."box" ASC, "cards"."name" ASC /*action='index',application='TutorGroupCards',controller='cards'*/[0m
+  ↳ app/views/cards/index.html.erb:15
+  Rendered cards/index.html.erb within layouts/application (Duration: 6.3ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | GC: 0.4ms)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/cards/import" for 127.0.0.1 at 2026-04-26 19:30:46 +0000
+Processing by CardsController#import as */*
+  Rendering layout layouts/application.html.erb
+  Rendering cards/import.html.erb within layouts/application
+  Rendered cards/import.html.erb within layouts/application (Duration: 2.3ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | GC: 0.2ms)
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/photos/alice.svg" for 127.0.0.1 at 2026-04-26 19:30:46 +0000
+Processing by PhotosController#show as */*
+  Parameters: {"filename"=>"alice.svg"}
+Sent file /home/wasim/projects/TutorGroupCards/storage/photos/alice.svg (0.3ms)
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
