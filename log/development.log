@@ -150,3 +150,67 @@ Sent file /home/wasim/projects/TutorGroupCards/storage/photos/alice.svg (0.3ms)
 Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
 
 
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "cards" /*application='TutorGroupCards'*/[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "cards" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "box" integer DEFAULT 1 NOT NULL, "created_at" datetime(6) NOT NULL, "last_reviewed_at" datetime(6), "name" varchar NOT NULL, "photo_filename" varchar, "updated_at" datetime(6) NOT NULL) /*application='TutorGroupCards'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TutorGroupCards'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20260426192524) /*application='TutorGroupCards'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-04-26 21:40:34.710414', '2026-04-26 21:40:34.710416') RETURNING "key" /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'schema_sha1' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '0ce3c6ca61691d7c584fe3c7c7f3b8dc3fe076fc', '2026-04-26 21:40:34.711866', '2026-04-26 21:40:34.711867') RETURNING "key" /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TutorGroupCards'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Alice Chen' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.2ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.818692', NULL, 'Alice Chen', 'alice.jpg', '2026-04-26 21:40:34.818692') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (6.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Bilal Ahmed' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (1.0ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.828082', NULL, 'Bilal Ahmed', 'bilal.jpg', '2026-04-26 21:40:34.828082') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Carmen Diaz' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.8ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.831443', NULL, 'Carmen Diaz', 'carmen.jpg', '2026-04-26 21:40:34.831443') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Daniel O''Connor' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (1.1ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.834753', NULL, 'Daniel O''Connor', 'daniel.jpg', '2026-04-26 21:40:34.834753') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Emma Watson' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (1.2ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.838195', NULL, 'Emma Watson', 'emma.jpg', '2026-04-26 21:40:34.838195') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Farouk Patel' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (1.2ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.841695', NULL, 'Farouk Patel', 'farouk.jpg', '2026-04-26 21:40:34.841695') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Grace Kim' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.9ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.845371', NULL, 'Grace Kim', 'grace.jpg', '2026-04-26 21:40:34.845371') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Hiroshi Tanaka' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.8ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.848849', NULL, 'Hiroshi Tanaka', 'hiroshi.jpg', '2026-04-26 21:40:34.848849') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Isabella Rossi' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.8ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.851781', NULL, 'Isabella Rossi', 'isabella.jpg', '2026-04-26 21:40:34.851781') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Jasper Mwangi' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.8ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.854466', NULL, 'Jasper Mwangi', 'jasper.jpg', '2026-04-26 21:40:34.854466') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Kira Larsen' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.9ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.857218', NULL, 'Kira Larsen', 'kira.jpg', '2026-04-26 21:40:34.857218') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Load (0.1ms)[0m  [1m[34mSELECT "cards".* FROM "cards" WHERE "cards"."name" = 'Liam Murphy' LIMIT 1 /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Create (0.8ms)[0m  [1m[32mINSERT INTO "cards" ("box", "created_at", "last_reviewed_at", "name", "photo_filename", "updated_at") VALUES (1, '2026-04-26 21:40:34.860525', NULL, 'Liam Murphy', 'liam.jpg', '2026-04-26 21:40:34.860525') RETURNING "id" /*application='TutorGroupCards'*/[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='TutorGroupCards'*/[0m
+  [1m[36mCard Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "cards" /*application='TutorGroupCards'*/[0m
